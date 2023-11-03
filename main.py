@@ -1,5 +1,10 @@
 import mysql.connector
 from mysql.connector import Error
+from fastapi import FastAPI
+from pydantic import BaseModel
+import uvicorn
+
+app = FastAPI()
 
 db_config = {
     "host": "35.239.158.202",
@@ -8,25 +13,23 @@ db_config = {
     "database": "test",
 }
 
-try:
-    connection = mysql.connector.connect(**db_config)
-    if connection.is_connected():
-        print("Uspješno povezan na bazu podataka")
+connection = mysql.connector.connect(**db_config)
 
+
+class StoreItem(BaseModel):
+    naziv: str
+    cena: int
+    kolicina: int
+
+
+@app.get("/store")
+def view_store():
     cursor = connection.cursor()
-    cursor.execute("SELECT * FROM test.store limit 2")
+    cursor.execute("SELECT * FROM test.store")
     results = cursor.fetchall()
-    for row in results:
-        print(row)
+    cursor.close()
+    return results
 
 
-except Error as e:
-    print("Greška prilikom povezivanja na bazu podataka:", e)
-
-
-finally:
-    # Zatvori vezu
-    if connection.is_connected():
-        cursor.close()
-        connection.close()
-        print("Veza zatvorena")
+if __name__ == "__main__":
+    uvicorn.run(app, host="127.0.0.1", port=8000)
