@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 import uvicorn
-from models.store import view_store
+from funcionalities.store import view_store
 
 app = FastAPI()
 

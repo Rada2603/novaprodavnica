@@ -1,13 +1,5 @@
-from pydantic import BaseModel
 from utils import get_database_connection
 import json
-
-
-class StoreItem(BaseModel):
-    naziv: str
-    cena: int
-    kolicina: int
-
 
 with open(r"data/prodavnica.json", "r") as f:
     store = json.load(f)
