@@ -1,0 +1,4 @@
+HOST=35.239.158.202
+USER=root
+PASSWORD=7$x[;*X-0qpT[J2n
+DATABASE=test
