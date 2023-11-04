@@ -1,0 +1,4 @@
+{
+    "select_store": "SELECT * FROM test.store",
+    "select_cart": "SELECT * FROM test.korpa"
+}

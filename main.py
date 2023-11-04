@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 import uvicorn
 from funcionalities.store import view_store
+from funcionalities.cart import view_cart
 
 app = FastAPI()
 
@@ -9,6 +10,12 @@ app = FastAPI()
 def view_store_route():
     results = view_store()
     return {"store_data": results}
+
+
+@app.get("/korpa")
+def view_cart_route():
+    results = view_cart()
+    return {"cart_data": results}
 
 
 if __name__ == "__main__":

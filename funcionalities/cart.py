@@ -1,14 +1,14 @@
 from utils import get_database_connection
 import json
 
-with open(r"data\upiti.json", "r") as f:
-    store = json.load(f)
+with open(r"data\upiti.json") as f:
+    cart = json.load(f)
 
 
-def view_store():
+def view_cart():
     connection = get_database_connection()
     cursor = connection.cursor()
-    cursor.execute(store["select_store"])
+    cursor.execute(cart["select_cart"])
     results = cursor.fetchall()
     cursor.close()
     connection.close
