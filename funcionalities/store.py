@@ -2,16 +2,16 @@ from utils import get_database_connection
 import json
 
 with open(r"data\upiti.json", "r") as f:
-    store = json.load(f)
+    file = json.load(f)
 
 
 def view_store():
     connection = get_database_connection()
     cursor = connection.cursor()
-    cursor.execute(store["select_store"])
+    cursor.execute(file["select_store"])
     results = cursor.fetchall()
     cursor.close()
-    connection.close
+    connection.close()
     formatted_results = [
         {
             "store_id": row[0],

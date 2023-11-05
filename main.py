@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 import uvicorn
 from funcionalities.store import view_store
-from funcionalities.cart import view_cart
+from funcionalities.cart import view_cart, add_cart
+from models.classes import Product, Buyer
 
 app = FastAPI()
 
@@ -16,6 +17,12 @@ def view_store_route():
 def view_cart_route():
     results = view_cart()
     return {"cart_data": results}
+
+
+@app.post("/add_cart")
+def add_cart_route(kupac: Buyer, product: Product):
+    results = add_cart(kupac, product)
+    return {"add_cart": results}
 
 
 if __name__ == "__main__":
