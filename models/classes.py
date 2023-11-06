@@ -11,6 +11,6 @@ class Product(BaseModel):
 class Buyer(BaseModel):
     kupac_id: int
     ime_kupca: str
-    Prezime_kupca: str
+    prezime_kupca: str
     username: str
     password: str
