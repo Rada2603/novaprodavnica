@@ -67,7 +67,7 @@ def add_cart(kupac: Buyer, product: Product):
     cart = cursor.fetchall()
     korpa_id = None
     for row in cart:
-        if product.id == row[2]:
+        if product.id == row[2] and kupac.kupac_id == row[3]:
             new_quantity = row[1] + product.kolicina
             cursor.execute(
                 "UPDATE test.korpa SET kolicina = %s WHERE korpa_id = %s",
@@ -85,10 +85,12 @@ def add_cart(kupac: Buyer, product: Product):
 
         cursor.execute(
             "INSERT INTO test.korpa (korpa_id, kolicina, product_id, moj_id) VALUES (%s, %s, %s, %s)",
-            (korpa_id, product.kolicina, product.id, product.product_id),
+            (korpa_id, product.kolicina, product.id, kupac.kupac_id),
         )
         korpa_id += 1
-    connection.commit()  # Potvrdite promene
+    connection.commit()
+    cursor.execute(file["select_cart"])
+    cart = cursor.fetchall()  # Potvrdite promene
     cursor.close()
     connection.close()
     print("2222")

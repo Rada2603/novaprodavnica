@@ -6,7 +6,6 @@ class Product(BaseModel):
     naziv: str
     cena: int
     kolicina: int
-    product_id: int
 
 
 class Buyer(BaseModel):
