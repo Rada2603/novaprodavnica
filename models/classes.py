@@ -14,3 +14,12 @@ class Buyer(BaseModel):
     prezime_kupca: str
     username: str
     password: str
+
+
+class Sales(BaseModel):
+    id: int
+    ime: str
+    prezime: str
+    username: str
+    lozinka: str
+    number: int

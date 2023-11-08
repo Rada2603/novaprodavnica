@@ -1,5 +1,6 @@
 {
     "select_store": "SELECT * FROM test.store",
     "select_cart": "SELECT * FROM test.korpa",
-    "select_kupci": "SELECT * FROM test.kupci WHERE kupac_id = %s AND ime_kupca = %s AND Prezime_kupca = %s AND username = %s AND pass = %s"
+    "select_kupci": "SELECT * FROM test.kupci WHERE kupac_id = %s AND ime_kupca = %s AND prezime_kupca = %s AND username = %s AND pass = %s",
+    "select_prodavci": "SELECT * FROM test.prodavci WHERE prodavac_id = %s AND name = %s AND surname = %s AND username = %sAND lozinka = %s AND number_id =%s"
 }

@@ -1,4 +1,4 @@
-from utils import get_database_connection
+from models.function import create_conection, close_conection
 import json
 
 with open(r"data\upiti.json", "r") as f:
@@ -6,12 +6,10 @@ with open(r"data\upiti.json", "r") as f:
 
 
 def view_store():
-    connection = get_database_connection()
-    cursor = connection.cursor()
+    connection, cursor = create_conection()
     cursor.execute(file["select_store"])
     results = cursor.fetchall()
-    cursor.close()
-    connection.close()
+    close_conection(connection, cursor)
     formatted_results = [
         {
             "store_id": row[0],
