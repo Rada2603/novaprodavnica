@@ -1,15 +1,15 @@
-from models.function import close_conection, create_conection, read
-
-import json
-
-with open(r"data\upiti.json") as f:
-    file = json.load(f)
+from utils import close_conection, create_conection, read_csv_file
+import os
 
 
 def view_cart_buyer():
     connection, cursor = create_conection()
-    login_buyer_1, login_buyer_df = read()
-    kupac_id = int(login_buyer_df["kupac_id"].values[0])
+    file_path, login_buyer_df = read_csv_file(os.environ.get("login_buyer_path"))
+    if login_buyer_df.empty:
+        return {"message": "You must log in"}
+    else:
+        kupac_id = int(login_buyer_df["kupac_id"].values[0])
+
     print(kupac_id)
     cursor.execute("SELECT *  FROM test.korpa WHERE moj_id = %s", (kupac_id,))
     cart_buyer = cursor.fetchall()

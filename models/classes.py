@@ -1,25 +1,21 @@
 from pydantic import BaseModel
 
 
-class Product(BaseModel):
+class BaseClass(BaseModel):
     id: int
-    naziv: str
-    cena: int
-    kolicina: int
+    name: str
 
 
-class Buyer(BaseModel):
-    kupac_id: int
-    ime_kupca: str
-    prezime_kupca: str
+class Users(BaseClass):
+    surname: str
     username: str
     password: str
 
 
-class Sales(BaseModel):
-    id: int
-    ime: str
-    prezime: str
-    username: str
-    lozinka: str
+class Sales(Users):
     number: int
+
+
+class Product(BaseClass):
+    price: int
+    quantity: int

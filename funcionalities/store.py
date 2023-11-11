@@ -1,13 +1,12 @@
-from models.function import create_conection, close_conection
-import json
-
-with open(r"data\upiti.json", "r") as f:
-    file = json.load(f)
+from utils import create_conection, close_conection, load_queries
+import os
 
 
 def view_store():
+    file_path = os.environ.get("path_to_json")
+    sql_queries = load_queries(file_path)
     connection, cursor = create_conection()
-    cursor.execute(file["select_store"])
+    cursor.execute(sql_queries["select_store"])
     results = cursor.fetchall()
     close_conection(connection, cursor)
     formatted_results = [

@@ -1,1 +1,2 @@
-kupac_id,ime_kupca,prezime_kupca,username,password
+buyer_id,ime_kupca,prezime_kupca,username,password
+100,Nebojsa,Micic,Neso,tisnio

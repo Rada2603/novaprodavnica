@@ -1,37 +1,26 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 import uvicorn
+from typing import Any, Union
+from dotenv import load_dotenv
+from models.classes import Product
 from funcionalities.store import view_store
 from funcionalities.cart import view_cart, add_cart_buyer
-from models.classes import Product, Buyer, Sales
+from models.classes import Users, Sales
 from funcionalities.buyer import view_cart_buyer
-from funcionalities.login import (
-    login_buyer,
-    check_out_buyer,
-    login_prodavac,
-    check_out_sales,
-)
+from funcionalities.login import check_out_user, login_user
 
 app = FastAPI()
+load_dotenv()
 
 
-@app.post("/login_buyer/")
-def login_buyer_route(kupac: Buyer):
-    return login_buyer(kupac)
+@app.post("/login/{user_type}")
+def login_user_route(user_type, user: dict):
+    return login_user(user_type, user)
 
 
-@app.post("/login_seler/")
-def login_prodavac_route(prodavac: Sales):
-    return login_prodavac(prodavac)
-
-
-@app.get("/check")
-def check_out_buyer_route():
-    return check_out_buyer()
-
-
-@app.get("/check_sales")
-def check_out_sales_route():
-    return check_out_sales()
+@app.get("/check/{user_type}")
+def check_out_user_route(user_type: str):
+    return check_out_user(user_type)
 
 
 @app.get("/store")
