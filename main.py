@@ -8,9 +8,17 @@ from funcionalities.cart import view_cart, add_cart_buyer
 from models.classes import Users, Sales
 from funcionalities.buyer import view_cart_buyer
 from funcionalities.login import check_out_user, login_user
+from deinification.hash import deidentify_passwords_and_save_to_json
+
 
 app = FastAPI()
 load_dotenv()
+
+
+@app.post("/deidentify_passwords")
+def deidentify_passwords_and_save_to_json_route():
+    deidentify_passwords_and_save_to_json()
+    return {"message": "Deidentification process completed successfully."}
 
 
 @app.post("/login/{user_type}")
