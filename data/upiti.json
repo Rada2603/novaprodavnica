@@ -4,5 +4,7 @@
     "select_buyer": "SELECT * FROM test.kupci WHERE kupac_id = %s AND ime_kupca = %s AND prezime_kupca = %s AND username = %s AND pass = %s",
     "select_sales": "SELECT * FROM test.prodavci  WHERE prodavac_id =%s AND name = %s AND surname = %s AND username =%s AND lozinka =%s AND number_id =%s",
     "select_buyer_username": "SELECT username from test.kupci WHERE username =%s",
-    "select_saler_username": "SELECT username from test.prodavci WHERE username =%s "
+    "select_saler_username": "SELECT username from test.prodavci WHERE username =%s ",
+    "select_non_hashed_saler_passwords": "SELECT lozinka FROM test.prodavci WHERE lozinka NOT LIKE '%hash%'",
+    "update_saler_password": "UPDATE test.prodavci SET lozinka = %s WHERE lozinka NOT LIKE '%hash%' AND lozinka = %s"
 }
