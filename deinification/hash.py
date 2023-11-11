@@ -38,4 +38,3 @@ def deidentify_passwords_and_save_to_json():
         )
     connection.commit()
     close_conection(connection, cursor)
-    deidentify_passwords_and_save_to_json()
