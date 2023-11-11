@@ -1,17 +1,14 @@
-from utils import get_database_connection
-import json
-
-with open(r"data/prodavnica.json", "r") as f:
-    store = json.load(f)
+from utils import create_conection, close_conection, load_queries
+import os
 
 
 def view_store():
-    connection = get_database_connection()
-    cursor = connection.cursor()
-    cursor.execute(store["select_store"])
+    file_path = os.environ.get("path_to_json")
+    sql_queries = load_queries(file_path)
+    connection, cursor = create_conection()
+    cursor.execute(sql_queries["select_store"])
     results = cursor.fetchall()
-    cursor.close()
-    connection.close
+    close_conection(connection, cursor)
     formatted_results = [
         {
             "store_id": row[0],
