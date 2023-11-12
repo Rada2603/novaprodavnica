@@ -1,0 +1,11 @@
+git checkout -b ime_grane <---- Nova grana 
+
+git add . <---- Dodavanje izmena
+git commit -m "Poruka" 
+git push 
+
+git status <---- Da vidis sta sve ima od izmena
+
+
+git checkout main <--- Nakon sto mergujes PR
+git pull
